@@ -18,15 +18,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ✅ CORS config for localhost and deployed frontend
+const cors = require('cors');
+
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://opportunate-frontend.vercel.app"
+      "http://localhost:5173",              // Local development
+      "https://opportunate-frontend.vercel.app", // Vercel frontend URL
+      "https://opportunate.netlify.app"     // Netlify frontend URL
     ],
-    credentials: true,
+    credentials: true, // Allow cookies and credentials to be sent
   })
 );
+
 
 // Port
 const PORT = process.env.PORT || 3000;
